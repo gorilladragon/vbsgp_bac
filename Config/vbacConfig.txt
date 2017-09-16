@@ -1,0 +1,27 @@
+@data
+[raw = on]
+./vbac_mountaincar.csv
+10
+50
+0.05
+../Dataset/mountaincar_hyper.csv
+../Dataset/mountaincar_train.bin
+../Dataset/mountaincar_test.bin
+../Dataset/mountaincar_support.bin
+../Dataset/mountaincar_hyper.bin
+[precomp = off]
+@dtc
+[mode = approx]
+[time = yes] 	
+1
+1
+1
+-1
+5
+0
+0.00001
+../Log/mountaincar_dtc_exact.time
+../Log/mountaincar_dtc_approx.time
+../Log/mountaincar_dtc_exact.log
+../Log/mountaincar_dtc_approx.log
+@exit
