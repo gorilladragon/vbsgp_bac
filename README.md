@@ -14,7 +14,7 @@ currently there are certain numerical errors, we need to tune it.
 
 Haibin Yu (buaanusyu@gmail.com)
 
-Wesley Tan
+Wesley Tan (wesley.tanjw@gmail.com)
 
 Oigawa Ryutaro
 
