@@ -16,5 +16,5 @@ Haibin Yu (buaanusyu@gmail.com)
 
 Wesley Tan (wesley.tanjw@gmail.com)
 
-Oigawa Ryutaro
+Oikawa Ryutaro
 
