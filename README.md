@@ -1,6 +1,6 @@
 ## Code Example
 
-run vbac_mountain_car.m
+run Main/vbac_mountain_car.m
 
 ## Motivation
 
@@ -8,7 +8,7 @@ Try to utilize Bayesian hyperparameter learning in Gaussian process actor critic
 
 ## Tests
 
-currently there are certain numerical errors, we need to tune it.
+Wesley somehow make things work without numerical errors.
 
 ## Contributors
 

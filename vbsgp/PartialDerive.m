@@ -1,7 +1,11 @@
-function [dqU,dqHyper,dBeta,dSigmaf]=PartialDerive(qU,InvKmm,xbatch,ybatch,z,Beta,Sigmaf,qHyper,Batch,nz,D)
-    [EKmb,EKmbbm,Edist]=Expectation(qHyper,xbatch,z,Sigmaf,Batch,nz,D);
-    
-     I=eye(nz);
+function [dqU,dqHyper,dBeta,dSigmaf]=PartialDerive(qU,InvKmm,xbatch,ybatch,z,Beta,Sigmaf,qHyper,Batch,bnz,D)
+
+    % REMEMBER to COMMENT OUT
+%     InvKmm=InvPcov; xbatch=bData.X; ybatch=bData.Y; bnz=Num; D=Dim;
+
+
+    [EKmb,EKmbbm,Edist]=Expectation(qHyper,xbatch,z,Sigmaf,Batch,bnz,D);    
+     I=eye(bnz);
 %     L=chol(qU.covariance);
 %     InvqUCov=L\(L'\I);
    
@@ -57,7 +61,7 @@ function [dqU,dqHyper,dBeta,dSigmaf]=PartialDerive(qU,InvKmm,xbatch,ybatch,z,Bet
     
     
     
-    [dEKmb,dEKmbbm]=dExpectation(EKmb,Edist,xbatch,z,Sigmaf,qHyper,Batch,nz,D);
+    [dEKmb,dEKmbbm]=dExpectation(EKmb,Edist,xbatch,z,Sigmaf,qHyper,Batch,bnz,D);
 
 % % Test whether the gradient with respect to the expectation is right    
 %    for k=1:D;

@@ -67,12 +67,12 @@ function [m, S, Kuu_inv, Xm_index] = vbsgp(data)
     qHyper.covariance_temp = inf(Dim);
     LB_Best = -inf;
 
-%%
+
     for e = 1: epoch
     	id = randperm(N);
-    	for m = 1%:Batch:N-Batch+1   % 1 to N-100+1, interval of 100
-		    bData.X = Datatrain.X(id(m:m+Batch-1),:);   % each batch of training input data
-            bData.Y = Datatrain.Y(id(m:m+Batch-1),:);   % each batch of training output data
+    	for m = 1:Batch:N-Batch+1   %
+		    bData.X = Datatrain.X(id(m:m+Batch-1),:);
+            bData.Y = Datatrain.Y(id(m:m+Batch-1),:);
             [dqU,dqHyper,dBeta,dSigmaf] = PartialDerive(qU,InvPcov,bData.X,bData.Y,z,Beta,Sigmaf,qHyper,Batch,Num,Dim);
             LB = LowerBound(qU,InvPcov,Xvalid,Yvalid,z,Beta,Sigmaf,qHyper,ValidSet,Num,Dim);
             if(LB>LB_Best)

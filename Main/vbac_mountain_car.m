@@ -18,7 +18,7 @@ learning_params.num_update_max = 20;   % 500; % Number of policy updates j
 learning_params.sample_interval = 1;   % 50; % sample interval
 learning_params.num_trial = 10;  % 100; % independent trial i
 learning_params.gam = 0.99; 
-learning_params.num_episode = 10; % episode l
+learning_params.num_episode = 20; % episode l
 learning_params.alp_init_VAC = 0.025; % initial learning rate
 % learning rates
 learning_params.alp_variance_adaptive = 0;
@@ -43,10 +43,10 @@ learning_params.other_name =  ...
 %     learning_params.num_episode,...
 %     learning_params.sample_interval,learning_params.num_update_max);
 
-% Run VAC on mountain car experiment
+%% Run VAC on mountain car experiment
 perf = vbac(domain_params,learning_params);
 
-% Store results in text file
+%% Store results in text file
 fid1 = fopen('../results/perf_VAC_mountain_car.txt','w');
 for tt = 1:size(perf,2)
      fprintf(fid1,'%f %f \n',mean(perf(:,tt)),std(perf(:,tt)));
