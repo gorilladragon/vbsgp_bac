@@ -16,7 +16,7 @@ end
 %
 
 % for i = 1:learning_params.num_trial % for each independant trial, usually 100
-i=1;
+% i=1;
 %     exptime = now;
 %     tic
     
@@ -160,9 +160,21 @@ i=1;
         % run SGPR
         % [mu, Sigma, Kmm_inv, Xm_index] = VBAC_RVGPopenMP ('../Config/vbacConfig.txt');
 
+%         % C++ RVGP - reformat outputs mu, Sigma, Kmm_inv, and Xm_index
+%         mu = mu';        
+%         mSize = size(mu, 1); % support size
+%         % convert vectors to matrices
+%         Sigma = vec2mat(Sigma, mSize)';
+%         Kmm_inv = vec2mat(Kmm_inv, mSize)';
+%         
+%         % === return support set scores === 
+%         episode_scores = full(episode_scores); % from sparse matrix to full
+%         Xm_indexTemp = Xm_index > 0; % convert from double to logical array
+%         support_scores = episode_scores(:,Xm_indexTemp);
+        
+        
 
-
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %  vbsgp
         mountaincar = load('vbac_mountaincar.csv');
         [mu, S, Kmm_inv, Xm_index] = vbsgp(mountaincar);
@@ -170,24 +182,21 @@ i=1;
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-        
-        
-        
-
-%%        
-        % reformat outputs mu, Sigma, Kmm_inv, and Xm_index
+        % VBSGP - reformat outputs mu, Sigma, Kmm_inv, and Xm_index
         mu = mu';        
         mSize = size(mu, 1); % support size
         % convert vectors to matrices
-        Sigma = vec2mat(Sigma, mSize)';
+        S = vec2mat(S, mSize)';
         Kmm_inv = vec2mat(Kmm_inv, mSize)';
         
         % === return support set scores === 
         episode_scores = full(episode_scores); % from sparse matrix to full
         Xm_indexTemp = Xm_index > 0; % convert from double to logical array
-        support_scores = episode_scores(:,Xm_indexTemp);
+        support_scores = episode_scores(:,Xm_indexTemp);        
         
         
+
+
         
         
 %% ================ RVGP using MATLAB ================ 
@@ -236,5 +245,5 @@ i=1;
 %         end
             
             
-%     end
+    end
 % end

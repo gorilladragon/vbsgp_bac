@@ -4,7 +4,7 @@ function [perf, theta] = vbac(d,learning_params)
 
 
 % REMEMBER to DELETE
-d=domain_params;
+% d=domain_params;
 
 
 learning_params.num_output = (learning_params.num_update_max / learning_params.sample_interval) + 1;
@@ -15,8 +15,8 @@ if ~isfield(d,'STEP')
 end
 %
 
-% for i = 1:learning_params.num_trial % for each independant trial, usually 100
-i=1;
+for i = 1:learning_params.num_trial % for each independant trial, usually 100
+% i=1;
 %     exptime = now;
 %     tic
     
@@ -37,8 +37,8 @@ i=1;
         (learning_params.alp_update_param./ (learning_params.alp_update_param ...
         +  (1:(learning_params.num_update_max+1) - 1)));
     
-%     for j = 1:(learning_params.num_update_max+1) % policy updates 
-        j=1;
+    for j = 1:(learning_params.num_update_max+1) % policy updates 
+%         j=1;
         % evaluate and print performance to result text file
         if (mod(j-1,learning_params.sample_interval) == 0)
             evalpoint =floor(j/learning_params.sample_interval)+1;
@@ -178,16 +178,13 @@ i=1;
         %  vbsgp
         mountaincar = load('vbac_mountaincar.csv');
         [mu, S, Kmm_inv, Xm_index] = vbsgp(mountaincar);
-
+        
+        % mu=m; Kmm_inv = Kuu_inv; 
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-        % VBSGP - reformat outputs mu, Sigma, Kmm_inv, and Xm_index
-        mu = mu';        
+        % VBSGP - reformat outputs mu, Sigma, Kmm_inv, and Xm_index        
         mSize = size(mu, 1); % support size
-        % convert vectors to matrices
-        S = vec2mat(S, mSize)';
-        Kmm_inv = vec2mat(Kmm_inv, mSize)';
         
         % === return support set scores === 
         episode_scores = full(episode_scores); % from sparse matrix to full
@@ -245,5 +242,5 @@ i=1;
 %         end
             
             
-%     end
-% end
+    end
+end
