@@ -8,7 +8,7 @@ Try to utilize Bayesian hyperparameter learning in Gaussian process actor critic
 
 ## Tests
 
-currently there are certain numerical errors, we need to tune it.
+Wesley somehow make things work without numerical errors.
 
 ## Contributors
 
